@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { establecimiento } from "@/data/pise";
 
 const NAV = [
   { href: "/", label: "Inicio", icon: "🏠" },
@@ -23,9 +23,11 @@ export default function Sidebar() {
   return (
     <>
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-charcoal-900 px-4 py-3 text-white lg:hidden">
-        <span className="flex items-center gap-2 text-sm font-semibold">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-lime-500 text-charcoal-900">PB</span>
-          PISE · {establecimiento.nombre}
+        <span className="flex items-center gap-2">
+          <span className="rounded-md bg-white px-2 py-1">
+            <Image src="/logo-bosquemar.png" alt="Colegio Bosquemar" width={700} height={184} className="h-6 w-auto" priority />
+          </span>
+          <span className="text-sm font-semibold">PISE</span>
         </span>
         <button
           onClick={() => setOpen((v) => !v)}
@@ -41,12 +43,14 @@ export default function Sidebar() {
           open ? "block" : "hidden"
         } lg:block`}
       >
-        <div className="hidden flex-col gap-1 border-b border-white/10 px-5 py-6 lg:flex">
-          <span className="flex items-center gap-2 text-base font-semibold">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-lime-500 text-charcoal-900">PB</span>
-            PISE Bosquemar
-          </span>
-          <span className="text-xs text-white/50">Corporación Educacional Futuro</span>
+        <div className="hidden flex-col gap-3 border-b border-white/10 px-5 py-6 lg:flex">
+          <div className="w-fit rounded-lg bg-white px-3 py-2.5">
+            <Image src="/logo-bosquemar.png" alt="Colegio Bosquemar" width={700} height={184} className="h-9 w-auto" priority />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-white">PISE — Plan Integral de Seguridad Educativa</p>
+            <p className="text-xs text-white/50">Corporación Educacional Futuro</p>
+          </div>
         </div>
 
         <nav className="flex flex-col gap-1 px-3 py-4">
