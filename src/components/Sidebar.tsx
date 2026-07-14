@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { BASE_PATH } from "@/lib/basePath";
 import {
   IconCalendar,
   IconCross,
@@ -35,7 +36,7 @@ export default function Sidebar() {
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-charcoal-900 px-4 py-3 text-white lg:hidden">
         <span className="flex items-center gap-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-icon.png" alt="Colegio Bosquemar" className="h-8 w-auto" />
+          <img src={`${BASE_PATH}/logo-icon.png`} alt="Colegio Bosquemar" className="h-8 w-auto" />
           <span className="text-sm font-semibold">PISE</span>
         </span>
         <div className="flex items-center gap-2">
@@ -68,7 +69,7 @@ export default function Sidebar() {
 
         <div className="relative flex flex-col gap-3 border-b border-white/10 px-5 py-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-icon.png" alt="Colegio Bosquemar" className="h-11 w-auto" />
+          <img src={`${BASE_PATH}/logo-icon.png`} alt="Colegio Bosquemar" className="h-11 w-auto" />
           <div>
             <p className="font-display text-base font-semibold text-white">PISE</p>
             <p className="text-xs leading-snug text-white/50">
