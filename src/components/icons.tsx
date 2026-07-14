@@ -139,6 +139,31 @@ export function IconMoon(props: IconProps) {
   );
 }
 
+export function IconChat(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 5.5h16v11H9.5L5 20.5v-4H4v-11Z" />
+      <path d="M8 9.5h8M8 12.5h5" />
+    </svg>
+  );
+}
+
+export function IconSend(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 12 20 4l-6 16-3-6-7-2Z" />
+    </svg>
+  );
+}
+
+export function IconX(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M5 5l14 14M19 5 5 19" />
+    </svg>
+  );
+}
+
 export function IconCheck(props: IconProps) {
   return (
     <svg {...base} {...props}>

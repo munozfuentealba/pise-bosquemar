@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import PageTransition from "@/components/PageTransition";
 import ThemeToggle from "@/components/ThemeToggle";
 import FloatingContact from "@/components/FloatingContact";
+import ChatWidget from "@/components/ChatWidget";
 import RightRail from "@/components/RightRail";
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
           </main>
         </div>
         <FloatingContact />
+        <ChatWidget />
       </body>
     </html>
   );
