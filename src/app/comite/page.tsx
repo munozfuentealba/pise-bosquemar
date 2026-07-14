@@ -5,6 +5,7 @@ export default function ComitePage() {
   return (
     <div>
       <PageHeader
+        icon="👥"
         eyebrow="Gobernanza"
         title="Comité de Seguridad Escolar"
         description="Estructura responsable de la toma de decisiones y operaciones antes, durante y después de una emergencia."

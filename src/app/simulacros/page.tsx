@@ -5,6 +5,7 @@ export default function SimulacrosPage() {
   return (
     <div>
       <PageHeader
+        icon="📅"
         eyebrow="Readecuación del protocolo"
         title="Simulacros y carta Gantt"
         description="Calendario de actividades y simulacros del ciclo PISE 2025–2026."

@@ -20,6 +20,7 @@ export default function PrimerosAuxiliosPage() {
   return (
     <div>
       <PageHeader
+        icon="🩹"
         eyebrow="Procedimiento de primeros auxilios"
         title="Emergencias médicas"
         description="Técnica de reanimación cardiopulmonar (RCP) y maniobra de Heimlich."

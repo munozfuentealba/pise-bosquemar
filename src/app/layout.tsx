@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +19,16 @@ export const metadata: Metadata = {
   description: "Plan Integral de Seguridad Educativa — Colegio Bosquemar",
 };
 
+const themeInitScript = `
+(function () {
+  try {
+    var stored = window.localStorage.getItem('pise-theme');
+    var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.dataset.theme = theme;
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,13 +37,19 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full">
         <div className="flex min-h-screen flex-col lg:flex-row">
           <Sidebar />
-          <main className="flex-1 px-4 py-8 sm:px-8 lg:px-12">
-            <div className="mx-auto max-w-5xl">{children}</div>
+          <main className="relative flex-1 overflow-hidden px-4 py-8 sm:px-8 lg:px-12">
+            <div className="mx-auto max-w-5xl">
+              <PageTransition>{children}</PageTransition>
+            </div>
           </main>
         </div>
       </body>

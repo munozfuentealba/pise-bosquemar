@@ -19,6 +19,7 @@ export default function DiagnosticoPage() {
   return (
     <div>
       <PageHeader
+        icon="🔎"
         eyebrow="Metodología AIDEP"
         title="Diagnóstico de riesgos y recursos"
         description="Análisis histórico, investigación en terreno, priorización de riesgos y plan de brechas del colegio."

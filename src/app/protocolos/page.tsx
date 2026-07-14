@@ -13,6 +13,7 @@ export default function ProtocolosPage() {
   return (
     <div>
       <PageHeader
+        icon="🚨"
         eyebrow="Metodología ACCEDER"
         title="Protocolos de emergencia"
         description="Procedimientos de alerta, alarma, intervención y recomendaciones para cada tipo de evento."
@@ -24,7 +25,7 @@ export default function ProtocolosPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {groupBy(protocolos, cat).map((p) => (
               <Link key={p.slug} href={`/protocolos/${p.slug}`}>
-                <Card className="h-full transition-shadow hover:shadow-md">
+                <Card interactive className="h-full">
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-semibold">{p.titulo}</p>
                   </div>

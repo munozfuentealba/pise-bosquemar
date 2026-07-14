@@ -20,18 +20,19 @@ const estadoCounts = protocolos.reduce(
 const contactosDestacados = directorioEmergencia.filter((c) => c.destacado);
 
 const secciones = [
-  { href: "/comite", label: "Comité de Seguridad", desc: "Roles, responsables y suplentes" },
-  { href: "/diagnostico", label: "Diagnóstico AIDEP", desc: "Análisis histórico, riesgos y plan de brechas" },
-  { href: "/protocolos", label: "Protocolos de emergencia", desc: `${protocolos.length} protocolos por tipo de evento` },
-  { href: "/directorio", label: "Directorio de emergencia", desc: `${directorioEmergencia.length} contactos locales` },
-  { href: "/primeros-auxilios", label: "Primeros auxilios", desc: "RCP y maniobra de Heimlich paso a paso" },
-  { href: "/simulacros", label: "Simulacros y carta Gantt", desc: "Calendario y cumplimiento" },
+  { href: "/comite", label: "Comité de Seguridad", desc: "Roles, responsables y suplentes", icon: "👥" },
+  { href: "/diagnostico", label: "Diagnóstico AIDEP", desc: "Análisis histórico, riesgos y plan de brechas", icon: "🔎" },
+  { href: "/protocolos", label: "Protocolos de emergencia", desc: `${protocolos.length} protocolos por tipo de evento`, icon: "🚨" },
+  { href: "/directorio", label: "Directorio de emergencia", desc: `${directorioEmergencia.length} contactos locales`, icon: "📞" },
+  { href: "/primeros-auxilios", label: "Primeros auxilios", desc: "RCP y maniobra de Heimlich paso a paso", icon: "🩹" },
+  { href: "/simulacros", label: "Simulacros y carta Gantt", desc: "Calendario y cumplimiento", icon: "📅" },
 ];
 
 export default function Home() {
   return (
     <div>
       <PageHeader
+        icon="🛡️"
         eyebrow={`${documentoInfo.codigo} · v${documentoInfo.versionActual}`}
         title={`PISE — ${establecimiento.nombre}`}
         description="Plan Integral de Seguridad Educativa. Esta aplicación es la versión 1 de diseño: el contenido corresponde al documento vigente del colegio y se irá completando hasta alinearlo al 100% con el manual Mineduc / SENAPRED 2025."
@@ -48,20 +49,24 @@ export default function Home() {
 
       <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Card>
-          <p className="text-xs text-muted">Estudiantes</p>
-          <p className="mt-1 text-2xl font-bold">{establecimiento.totalEstudiantes.toLocaleString("es-CL")}</p>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-lime-500/10 text-sm text-lime-700 dark:text-lime-400">🎓</span>
+          <p className="mt-2 text-xs text-muted">Estudiantes</p>
+          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalEstudiantes.toLocaleString("es-CL")}</p>
         </Card>
         <Card>
-          <p className="text-xs text-muted">Funcionarios</p>
-          <p className="mt-1 text-2xl font-bold">{establecimiento.totalFuncionarios}</p>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-skyblue-500/10 text-sm text-skyblue-700 dark:text-skyblue-400">🧑‍🏫</span>
+          <p className="mt-2 text-xs text-muted">Funcionarios</p>
+          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalFuncionarios}</p>
         </Card>
         <Card>
-          <p className="text-xs text-muted">Personas totales</p>
-          <p className="mt-1 text-2xl font-bold">{establecimiento.totalPersonas.toLocaleString("es-CL")}</p>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-lime-500/10 text-sm text-lime-700 dark:text-lime-400">🏫</span>
+          <p className="mt-2 text-xs text-muted">Personas totales</p>
+          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalPersonas.toLocaleString("es-CL")}</p>
         </Card>
         <Card>
-          <p className="text-xs text-muted">Protocolos activos</p>
-          <p className="mt-1 text-2xl font-bold">{protocolos.length}</p>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-skyblue-500/10 text-sm text-skyblue-700 dark:text-skyblue-400">🚨</span>
+          <p className="mt-2 text-xs text-muted">Protocolos activos</p>
+          <p className="mt-0.5 text-2xl font-bold">{protocolos.length}</p>
         </Card>
       </div>
 
@@ -150,9 +155,14 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {secciones.map((s) => (
             <Link key={s.href} href={s.href}>
-              <Card className="h-full transition-shadow hover:shadow-md">
-                <p className="font-semibold">{s.label}</p>
-                <p className="mt-1 text-sm text-muted">{s.desc}</p>
+              <Card interactive className="flex h-full items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500/15 to-skyblue-500/15 text-lg">
+                  {s.icon}
+                </span>
+                <div>
+                  <p className="font-semibold">{s.label}</p>
+                  <p className="mt-1 text-sm text-muted">{s.desc}</p>
+                </div>
               </Card>
             </Link>
           ))}

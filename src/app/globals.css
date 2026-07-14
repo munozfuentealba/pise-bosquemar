@@ -1,29 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f8f6;
-  --foreground: #1a1d1a;
+  --background: #f6f8fb;
+  --foreground: #14181f;
   --card: #ffffff;
-  --border: #e4e7e2;
-  --muted: #6b7268;
+  --border: #e2e6ee;
+  --muted: #656d7a;
+  --shadow-color: 220 30% 40%;
 
-  --color-brand-lime-50: #f4faea;
-  --color-brand-lime-100: #e5f4cc;
-  --color-brand-lime-400: #a3d439;
-  --color-brand-lime-500: #8bc722;
-  --color-brand-lime-600: #6ea019;
-  --color-brand-lime-700: #557a15;
+  /* Brand colors sampled from the real Colegio Bosquemar logo (#00ad00 green / #00269a blue) */
+  --color-brand-lime-50: #eafbe9;
+  --color-brand-lime-100: #cdf4cb;
+  --color-brand-lime-400: #17c400;
+  --color-brand-lime-500: #00ad00;
+  --color-brand-lime-600: #009400;
+  --color-brand-lime-700: #007a00;
 
-  --color-brand-blue-50: #eef6ff;
-  --color-brand-blue-100: #d9ecff;
-  --color-brand-blue-400: #3fa0f7;
-  --color-brand-blue-500: #1f83e6;
-  --color-brand-blue-600: #1467bd;
-  --color-brand-blue-700: #12539a;
+  --color-brand-blue-50: #eaf0ff;
+  --color-brand-blue-100: #cddcff;
+  --color-brand-blue-400: #2f5fe0;
+  --color-brand-blue-500: #0038b8;
+  --color-brand-blue-600: #002a8c;
+  --color-brand-blue-700: #001f75;
 
-  --color-brand-charcoal-900: #1c211f;
-  --color-brand-charcoal-800: #262c29;
-  --color-brand-charcoal-700: #333b37;
+  --color-brand-charcoal-900: #0b1130;
+  --color-brand-charcoal-800: #141c42;
+  --color-brand-charcoal-700: #1e285a;
 }
 
 @theme inline {
@@ -57,20 +59,96 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #14171c;
-    --foreground: #ececec;
-    --card: #1b1f24;
-    --border: #2a2f36;
-    --muted: #9aa1a8;
+    --background: #0d1117;
+    --foreground: #edeef2;
+    --card: #161b26;
+    --border: #262d3d;
+    --muted: #98a0b3;
   }
+}
+
+:root[data-theme="dark"] {
+  --background: #0d1117;
+  --foreground: #edeef2;
+  --card: #161b26;
+  --border: #262d3d;
+  --muted: #98a0b3;
+}
+
+:root[data-theme="light"] {
+  --background: #f6f8fb;
+  --foreground: #14181f;
+  --card: #ffffff;
+  --border: #e2e6ee;
+  --muted: #656d7a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 * {
   box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-in {
+  animation: page-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes blob-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(2%, -3%) scale(1.05);
+  }
+}
+
+.decor-blob {
+  animation: blob-drift 14s ease-in-out infinite;
+}
+
+.theme-icon-dark,
+.theme-label-dark {
+  display: none;
+}
+:root[data-theme="dark"] .theme-icon-dark,
+:root[data-theme="dark"] .theme-label-dark {
+  display: inline;
+}
+:root[data-theme="dark"] .theme-icon-light,
+:root[data-theme="dark"] .theme-label-light {
+  display: none;
+}
+
+/* Soft brand-colored elevation used on interactive cards */
+.elevate {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.elevate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px -14px hsl(var(--shadow-color) / 0.35);
 }

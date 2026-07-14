@@ -21,6 +21,7 @@ export default function ActualizacionPage() {
   return (
     <div>
       <PageHeader
+        icon="🛠️"
         eyebrow="Auditoría normativa 2025"
         title="Plan de actualización a la normativa Mineduc / SENAPRED"
         description="Brechas identificadas al comparar el documento vigente del colegio (PROTEGESS 2025) con el manual PISE Mineduc 2025 y los colegios de referencia investigados. Esta lista guía la versión final del documento."

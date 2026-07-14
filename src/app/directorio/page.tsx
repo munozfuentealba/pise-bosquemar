@@ -5,6 +5,7 @@ export default function DirectorioPage() {
   return (
     <div>
       <PageHeader
+        icon="📞"
         eyebrow="Comunicación e información"
         title="Directorio de emergencia"
         description="Contactos locales para cada tipo de emergencia. Puerto Montt / Los Lagos."

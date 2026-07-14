@@ -23,7 +23,7 @@ export default async function ProtocoloDetailPage({
         ← Todos los protocolos
       </Link>
 
-      <PageHeader eyebrow={protocolo.categoria} title={protocolo.titulo} />
+      <PageHeader icon="🚨" eyebrow={protocolo.categoria} title={protocolo.titulo} />
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <StatusBadge estado={protocolo.estado} />
