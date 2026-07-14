@@ -93,6 +93,24 @@ export function IconShield(props: IconProps) {
   );
 }
 
+export function IconFlame(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3c1 2.5-2.5 3.8-2.5 7 0 2.2 1.8 4 4 4s4-1.8 4-4c0-1.6-.9-2.4-1.5-3.2.3 1.4-.4 2.2-1 2.2-.9 0-1-1-.6-1.8C15.2 5.5 13.5 4 12 3Z" />
+      <path d="M8.5 12.5A5.5 5.5 0 0 0 12 21a5.5 5.5 0 0 0 3.5-9.7" />
+    </svg>
+  );
+}
+
+export function IconLeaf(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M5 19c8 0 14-6 14-15-9 0-15 6-15 14 0 .3 0 .7.1 1Z" />
+      <path d="M9 15c2.5-2.5 5-5 9-9" />
+    </svg>
+  );
+}
+
 export function IconGraduationCap(props: IconProps) {
   return (
     <svg {...base} {...props}>

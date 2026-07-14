@@ -1,5 +1,5 @@
 import { Card, PageHeader } from "@/components/Card";
-import { IconSearch } from "@/components/icons";
+import { IconSearch, IconWrench } from "@/components/icons";
 import { analisisHistorico, investigacionTerreno, planDeBrechas, infraestructura } from "@/data/pise";
 
 function Cumplimiento({ value }: { value: number }) {
@@ -60,7 +60,7 @@ export default function DiagnosticoPage() {
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {investigacionTerreno.map((r, i) => (
-            <Card key={i}>
+            <Card key={i} watermark={IconSearch}>
               <p className="font-semibold">{r.condicion}</p>
               <p className="mt-1 text-sm text-muted">{r.ubicacion}</p>
               <p className="mt-2 text-sm">{r.impacto}</p>
@@ -106,7 +106,7 @@ export default function DiagnosticoPage() {
         </h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {infraestructura.map((it, i) => (
-            <Card key={i} className={it.alerta ? "border-red-400/40" : ""}>
+            <Card key={i} className={it.alerta ? "border-red-400/40" : ""} watermark={IconWrench}>
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted">{it.categoria}</p>

@@ -18,7 +18,7 @@ export default function SimulacrosPage() {
           {simulacros.map((s, i) => {
             const done = s.cumplimiento === "100%";
             return (
-              <Card key={i}>
+              <Card key={i} watermark={IconCalendar}>
                 <p className="font-semibold">{s.tipo}</p>
                 <p className="mt-1 text-sm text-muted">{s.fecha}</p>
                 <span

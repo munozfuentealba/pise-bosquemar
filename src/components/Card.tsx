@@ -6,18 +6,29 @@ export function Card({
   children,
   className = "",
   interactive = false,
+  watermark: Watermark,
 }: {
   children: ReactNode;
   className?: string;
   interactive?: boolean;
+  /** A large, low-opacity themed icon sitting fully inside the card
+   * (bottom-right), never touching or bleeding past the border. */
+  watermark?: Icon;
 }) {
   return (
     <div
-      className={`relative rounded-xl border border-border bg-card p-5 shadow-sm shadow-black/[0.03] ${
+      className={`relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm shadow-black/[0.03] ${
         interactive ? "elevate cursor-pointer" : ""
       } ${className}`}
     >
-      {children}
+      {Watermark && (
+        <Watermark
+          aria-hidden
+          className="pointer-events-none absolute bottom-3 right-3 h-16 w-16 text-foreground/[0.06]"
+          strokeWidth={1.1}
+        />
+      )}
+      <div className="relative">{children}</div>
     </div>
   );
 }
@@ -32,14 +43,9 @@ export function StatCard({
   value: string | number;
 }) {
   return (
-    <Card className="overflow-hidden">
-      <Icon
-        aria-hidden
-        className="pointer-events-none absolute -right-3 -top-3 h-20 w-20 text-foreground/[0.06]"
-        strokeWidth={1.2}
-      />
-      <p className="relative text-xs text-muted">{label}</p>
-      <p className="relative mt-1 text-2xl font-bold">{value}</p>
+    <Card watermark={Icon}>
+      <p className="text-xs text-muted">{label}</p>
+      <p className="mt-1 text-2xl font-bold">{value}</p>
     </Card>
   );
 }

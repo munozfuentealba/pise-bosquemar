@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       <div className="mb-8 grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2" watermark={IconBuilding}>
           <h2 className="mb-4 section-title">Establecimiento</h2>
           <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
             <div>
@@ -97,7 +97,7 @@ export default function Home() {
           </dl>
         </Card>
 
-        <Card>
+        <Card watermark={IconPhone}>
           <h2 className="mb-4 section-title">Contactos clave</h2>
           <ul className="space-y-3 text-sm">
             {contactosDestacados.map((c) => (

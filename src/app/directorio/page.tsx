@@ -14,7 +14,7 @@ export default function DirectorioPage() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {directorioEmergencia.map((c, i) => (
-          <Card key={i} className={c.notaPendiente ? "border-red-400/40" : ""}>
+          <Card key={i} className={c.notaPendiente ? "border-red-400/40" : ""} watermark={IconPhone}>
             <p className="text-xs uppercase tracking-wide text-muted">{c.tipo}</p>
             <p className="mt-1 font-semibold">{c.institucion}</p>
             <p className="mt-2 text-lg font-bold text-skyblue-600 dark:text-skyblue-400">{c.numero}</p>

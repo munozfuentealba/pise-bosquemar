@@ -37,7 +37,7 @@ export default function ActualizacionPage() {
 
       <div className="space-y-4">
         {ordenadas.map((b, i) => (
-          <Card key={i}>
+          <Card key={i} watermark={IconWrench}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="font-semibold">{b.titulo}</p>
               <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${PRIORIDAD_STYLES[b.prioridad]}`}>

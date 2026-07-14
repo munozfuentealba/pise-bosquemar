@@ -1,5 +1,5 @@
 import { Card, PageHeader } from "@/components/Card";
-import { IconUsers } from "@/components/icons";
+import { IconCross, IconShield, IconUsers } from "@/components/icons";
 import { comiteSeguridad, brigadaPrimerosAuxilios, establecimiento } from "@/data/pise";
 
 export default function ComitePage() {
@@ -12,7 +12,7 @@ export default function ComitePage() {
         description="Estructura responsable de la toma de decisiones y operaciones antes, durante y después de una emergencia."
       />
 
-      <Card className="mb-8">
+      <Card className="mb-8" watermark={IconShield}>
         <p className="text-sm text-muted">
           Presidido por la Directora <strong className="text-foreground">{establecimiento.director}</strong>, con{" "}
           <strong className="text-foreground">{establecimiento.subrogante}</strong> como subrogante, y coordinado
@@ -22,7 +22,7 @@ export default function ComitePage() {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {comiteSeguridad.map((m) => (
-          <Card key={m.cargo}>
+          <Card key={m.cargo} watermark={IconUsers}>
             <p className="text-xs font-semibold uppercase tracking-wide text-skyblue-600 dark:text-skyblue-400">
               {m.cargo}
             </p>
@@ -44,7 +44,7 @@ export default function ComitePage() {
         <h2 className="mb-4 section-title">
           Brigada de primeros auxilios
         </h2>
-        <Card>
+        <Card watermark={IconCross}>
           <div className="flex flex-wrap gap-3">
             {brigadaPrimerosAuxilios.map((n) => (
               <span
