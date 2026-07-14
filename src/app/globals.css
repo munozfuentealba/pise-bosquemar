@@ -1,26 +1,76 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8f6;
+  --foreground: #1a1d1a;
+  --card: #ffffff;
+  --border: #e4e7e2;
+  --muted: #6b7268;
+
+  --color-brand-lime-50: #f4faea;
+  --color-brand-lime-100: #e5f4cc;
+  --color-brand-lime-400: #a3d439;
+  --color-brand-lime-500: #8bc722;
+  --color-brand-lime-600: #6ea019;
+  --color-brand-lime-700: #557a15;
+
+  --color-brand-blue-50: #eef6ff;
+  --color-brand-blue-100: #d9ecff;
+  --color-brand-blue-400: #3fa0f7;
+  --color-brand-blue-500: #1f83e6;
+  --color-brand-blue-600: #1467bd;
+  --color-brand-blue-700: #12539a;
+
+  --color-brand-charcoal-900: #1c211f;
+  --color-brand-charcoal-800: #262c29;
+  --color-brand-charcoal-700: #333b37;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+
+  --color-lime-50: var(--color-brand-lime-50);
+  --color-lime-100: var(--color-brand-lime-100);
+  --color-lime-400: var(--color-brand-lime-400);
+  --color-lime-500: var(--color-brand-lime-500);
+  --color-lime-600: var(--color-brand-lime-600);
+  --color-lime-700: var(--color-brand-lime-700);
+
+  --color-skyblue-50: var(--color-brand-blue-50);
+  --color-skyblue-100: var(--color-brand-blue-100);
+  --color-skyblue-400: var(--color-brand-blue-400);
+  --color-skyblue-500: var(--color-brand-blue-500);
+  --color-skyblue-600: var(--color-brand-blue-600);
+  --color-skyblue-700: var(--color-brand-blue-700);
+
+  --color-charcoal-900: var(--color-brand-charcoal-900);
+  --color-charcoal-800: var(--color-brand-charcoal-800);
+  --color-charcoal-700: var(--color-brand-charcoal-700);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #14171c;
+    --foreground: #ececec;
+    --card: #1b1f24;
+    --border: #2a2f36;
+    --muted: #9aa1a8;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }

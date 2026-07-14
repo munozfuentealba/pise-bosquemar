@@ -1,65 +1,163 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Card, PageHeader } from "@/components/Card";
+import StatusBadge from "@/components/StatusBadge";
+import {
+  establecimiento,
+  documentoInfo,
+  directorioEmergencia,
+  protocolos,
+  brechasNormativas,
+} from "@/data/pise";
+
+const estadoCounts = protocolos.reduce(
+  (acc, p) => {
+    acc[p.estado]++;
+    return acc;
+  },
+  { vigente: 0, revisar: 0, pendiente: 0 }
+);
+
+const contactosDestacados = directorioEmergencia.filter((c) => c.destacado);
+
+const secciones = [
+  { href: "/comite", label: "Comité de Seguridad", desc: "Roles, responsables y suplentes" },
+  { href: "/diagnostico", label: "Diagnóstico AIDEP", desc: "Análisis histórico, riesgos y plan de brechas" },
+  { href: "/protocolos", label: "Protocolos de emergencia", desc: `${protocolos.length} protocolos por tipo de evento` },
+  { href: "/directorio", label: "Directorio de emergencia", desc: `${directorioEmergencia.length} contactos locales` },
+  { href: "/primeros-auxilios", label: "Primeros auxilios", desc: "RCP y maniobra de Heimlich paso a paso" },
+  { href: "/simulacros", label: "Simulacros y carta Gantt", desc: "Calendario y cumplimiento" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <PageHeader
+        eyebrow={`${documentoInfo.codigo} · v${documentoInfo.versionActual}`}
+        title={`PISE — ${establecimiento.nombre}`}
+        description="Plan Integral de Seguridad Educativa. Esta aplicación es la versión 1 de diseño: el contenido corresponde al documento vigente del colegio y se irá completando hasta alinearlo al 100% con el manual Mineduc / SENAPRED 2025."
+      />
+
+      <div className="mb-6 rounded-xl border border-skyblue-400/40 bg-skyblue-50 p-4 text-sm text-skyblue-700 dark:border-skyblue-500/30 dark:bg-skyblue-500/10 dark:text-skyblue-200">
+        <strong>Versión de diseño 1.</strong> Los datos que ves aquí vienen del documento{" "}
+        <span className="font-mono text-xs">PROTEGESS 2025.pdf</span> tal como está hoy. Revisa la sección{" "}
+        <Link href="/actualizacion" className="underline underline-offset-2">
+          Plan de actualización 2025
+        </Link>{" "}
+        para ver qué falta corregir antes de la versión final.
+      </div>
+
+      <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <Card>
+          <p className="text-xs text-muted">Estudiantes</p>
+          <p className="mt-1 text-2xl font-bold">{establecimiento.totalEstudiantes.toLocaleString("es-CL")}</p>
+        </Card>
+        <Card>
+          <p className="text-xs text-muted">Funcionarios</p>
+          <p className="mt-1 text-2xl font-bold">{establecimiento.totalFuncionarios}</p>
+        </Card>
+        <Card>
+          <p className="text-xs text-muted">Personas totales</p>
+          <p className="mt-1 text-2xl font-bold">{establecimiento.totalPersonas.toLocaleString("es-CL")}</p>
+        </Card>
+        <Card>
+          <p className="text-xs text-muted">Protocolos activos</p>
+          <p className="mt-1 text-2xl font-bold">{protocolos.length}</p>
+        </Card>
+      </div>
+
+      <div className="mb-8 grid gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-2">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Establecimiento</h2>
+          <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+            <div>
+              <dt className="text-muted">Dirección</dt>
+              <dd className="font-medium">{establecimiento.direccion}, {establecimiento.comuna}</dd>
+            </div>
+            <div>
+              <dt className="text-muted">RBD</dt>
+              <dd className="font-medium">{establecimiento.rbd}</dd>
+            </div>
+            <div>
+              <dt className="text-muted">Directora</dt>
+              <dd className="font-medium">{establecimiento.director}</dd>
+            </div>
+            <div>
+              <dt className="text-muted">Coordinador de Seguridad</dt>
+              <dd className="font-medium">{establecimiento.coordinadorSeguridad}</dd>
+            </div>
+            <div>
+              <dt className="text-muted">Sostenedor</dt>
+              <dd className="font-medium">{establecimiento.sostenedor}</dd>
+            </div>
+            <div>
+              <dt className="text-muted">Web</dt>
+              <dd className="font-medium">{establecimiento.web}</dd>
+            </div>
+          </dl>
+        </Card>
+
+        <Card>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Contactos clave</h2>
+          <ul className="space-y-3 text-sm">
+            {contactosDestacados.map((c) => (
+              <li key={c.institucion} className="flex items-start justify-between gap-3">
+                <span className="text-muted">{c.institucion}</span>
+                <span className="text-right font-semibold">{c.numero}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/directorio" className="mt-4 inline-block text-sm font-medium text-skyblue-600 hover:underline dark:text-skyblue-400">
+            Ver directorio completo →
+          </Link>
+        </Card>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Estado de actualización normativa</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <Card className="flex items-center justify-between">
+            <div>
+              <StatusBadge estado="vigente" />
+              <p className="mt-2 text-2xl font-bold">{estadoCounts.vigente}</p>
+              <p className="text-xs text-muted">protocolos al día</p>
+            </div>
+          </Card>
+          <Card className="flex items-center justify-between">
+            <div>
+              <StatusBadge estado="revisar" />
+              <p className="mt-2 text-2xl font-bold">{estadoCounts.revisar}</p>
+              <p className="text-xs text-muted">por revisar</p>
+            </div>
+          </Card>
+          <Card className="flex items-center justify-between">
+            <div>
+              <StatusBadge estado="pendiente" />
+              <p className="mt-2 text-2xl font-bold">{estadoCounts.pendiente}</p>
+              <p className="text-xs text-muted">pendientes</p>
+            </div>
+          </Card>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <p className="mt-3 text-xs text-muted">
+          {brechasNormativas.length} brechas normativas identificadas en total. Ver detalle en{" "}
+          <Link href="/actualizacion" className="text-skyblue-600 underline underline-offset-2 dark:text-skyblue-400">
+            Plan de actualización 2025
+          </Link>.
+        </p>
+      </div>
+
+      <div>
+        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Secciones del PISE</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {secciones.map((s) => (
+            <Link key={s.href} href={s.href}>
+              <Card className="h-full transition-shadow hover:shadow-md">
+                <p className="font-semibold">{s.label}</p>
+                <p className="mt-1 text-sm text-muted">{s.desc}</p>
+              </Card>
+            </Link>
+          ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
