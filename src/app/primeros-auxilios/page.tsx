@@ -1,4 +1,5 @@
 import { Card, PageHeader } from "@/components/Card";
+import { IconCross } from "@/components/icons";
 import { rcpPasos, heimlichPasos } from "@/data/pise";
 
 function Pasos({ pasos }: { pasos: string[] }) {
@@ -20,7 +21,7 @@ export default function PrimerosAuxiliosPage() {
   return (
     <div>
       <PageHeader
-        icon="🩹"
+        icon={IconCross}
         eyebrow="Procedimiento de primeros auxilios"
         title="Emergencias médicas"
         description="Técnica de reanimación cardiopulmonar (RCP) y maniobra de Heimlich."
@@ -28,11 +29,11 @@ export default function PrimerosAuxiliosPage() {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
-          <h2 className="mb-4 text-lg font-semibold">Reanimación cardiopulmonar (RCP)</h2>
+          <h2 className="mb-4 font-display text-xl font-semibold">Reanimación cardiopulmonar (RCP)</h2>
           <Pasos pasos={rcpPasos} />
         </Card>
         <Card>
-          <h2 className="mb-4 text-lg font-semibold">Maniobra de Heimlich (ahogamiento)</h2>
+          <h2 className="mb-4 font-display text-xl font-semibold">Maniobra de Heimlich (ahogamiento)</h2>
           <Pasos pasos={heimlichPasos} />
         </Card>
       </div>

@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode, SVGProps } from "react";
+
+type Icon = ComponentType<SVGProps<SVGSVGElement>>;
 
 export function Card({
   children,
@@ -20,27 +22,49 @@ export function Card({
   );
 }
 
+export function StatCard({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: Icon;
+  label: string;
+  value: string | number;
+}) {
+  return (
+    <Card className="overflow-hidden">
+      <Icon
+        aria-hidden
+        className="pointer-events-none absolute -right-3 -top-3 h-20 w-20 text-foreground/[0.06]"
+        strokeWidth={1.2}
+      />
+      <p className="relative text-xs text-muted">{label}</p>
+      <p className="relative mt-1 text-2xl font-bold">{value}</p>
+    </Card>
+  );
+}
+
 export function PageHeader({
   eyebrow,
   title,
   description,
-  icon,
+  icon: Icon,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
-  icon?: string;
+  icon?: Icon;
 }) {
   return (
-    <div className="relative mb-8 overflow-hidden">
+    <div className="relative mb-10 overflow-hidden">
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-10 -top-16 -z-10 h-40 w-64 rounded-full bg-gradient-to-br from-lime-400/25 via-skyblue-400/15 to-transparent blur-3xl"
+        className="pointer-events-none absolute -left-10 -top-16 -z-10 h-48 w-80 rounded-full bg-gradient-to-br from-lime-400/25 via-skyblue-400/15 to-transparent blur-3xl"
       />
       <div className="flex items-start gap-4">
-        {icon && (
-          <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lime-500 to-skyblue-600 text-xl shadow-md shadow-lime-600/20">
-            {icon}
+        {Icon && (
+          <span className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lime-500 to-skyblue-600 shadow-md shadow-lime-600/20">
+            <Icon className="h-6 w-6 text-white" strokeWidth={1.75} />
           </span>
         )}
         <div>
@@ -49,9 +73,9 @@ export function PageHeader({
               {eyebrow}
             </p>
           )}
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">{title}</h1>
+          <h1 className="font-display text-3xl font-semibold text-foreground sm:text-4xl">{title}</h1>
           {description && (
-            <p className="mt-2 max-w-3xl text-sm text-muted sm:text-base">{description}</p>
+            <p className="mt-2.5 max-w-3xl text-sm text-muted sm:text-base">{description}</p>
           )}
         </div>
       </div>

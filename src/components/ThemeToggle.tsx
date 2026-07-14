@@ -1,5 +1,7 @@
 "use client";
 
+import { IconMoon, IconSun } from "./icons";
+
 export default function ThemeToggle({ className = "" }: { className?: string }) {
   function toggle() {
     const root = document.documentElement;
@@ -12,14 +14,14 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       onClick={toggle}
       aria-label="Cambiar entre modo claro y oscuro"
-      className={`flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:bg-white/10 hover:text-white ${className}`}
+      className={`flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-border/60 ${className}`}
     >
-      <span className="relative flex h-4 w-4 items-center justify-center text-sm">
-        <span className="theme-icon-light">☀️</span>
-        <span className="theme-icon-dark">🌙</span>
+      <span className="theme-icon-light flex">
+        <IconSun className="h-[18px] w-[18px]" />
       </span>
-      <span className="theme-label-light">Modo claro</span>
-      <span className="theme-label-dark">Modo oscuro</span>
+      <span className="theme-icon-dark flex">
+        <IconMoon className="h-[18px] w-[18px]" />
+      </span>
     </button>
   );
 }

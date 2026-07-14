@@ -1,6 +1,18 @@
 import Link from "next/link";
-import { Card, PageHeader } from "@/components/Card";
+import { Card, PageHeader, StatCard } from "@/components/Card";
 import StatusBadge from "@/components/StatusBadge";
+import {
+  IconBriefcase,
+  IconBuilding,
+  IconCalendar,
+  IconCross,
+  IconGraduationCap,
+  IconPhone,
+  IconSearch,
+  IconShield,
+  IconSiren,
+  IconUsers,
+} from "@/components/icons";
 import {
   establecimiento,
   documentoInfo,
@@ -20,19 +32,19 @@ const estadoCounts = protocolos.reduce(
 const contactosDestacados = directorioEmergencia.filter((c) => c.destacado);
 
 const secciones = [
-  { href: "/comite", label: "Comité de Seguridad", desc: "Roles, responsables y suplentes", icon: "👥" },
-  { href: "/diagnostico", label: "Diagnóstico AIDEP", desc: "Análisis histórico, riesgos y plan de brechas", icon: "🔎" },
-  { href: "/protocolos", label: "Protocolos de emergencia", desc: `${protocolos.length} protocolos por tipo de evento`, icon: "🚨" },
-  { href: "/directorio", label: "Directorio de emergencia", desc: `${directorioEmergencia.length} contactos locales`, icon: "📞" },
-  { href: "/primeros-auxilios", label: "Primeros auxilios", desc: "RCP y maniobra de Heimlich paso a paso", icon: "🩹" },
-  { href: "/simulacros", label: "Simulacros y carta Gantt", desc: "Calendario y cumplimiento", icon: "📅" },
+  { href: "/comite", label: "Comité de Seguridad", desc: "Roles, responsables y suplentes", Icon: IconUsers },
+  { href: "/diagnostico", label: "Diagnóstico AIDEP", desc: "Análisis histórico, riesgos y plan de brechas", Icon: IconSearch },
+  { href: "/protocolos", label: "Protocolos de emergencia", desc: `${protocolos.length} protocolos por tipo de evento`, Icon: IconSiren },
+  { href: "/directorio", label: "Directorio de emergencia", desc: `${directorioEmergencia.length} contactos locales`, Icon: IconPhone },
+  { href: "/primeros-auxilios", label: "Primeros auxilios", desc: "RCP y maniobra de Heimlich paso a paso", Icon: IconCross },
+  { href: "/simulacros", label: "Simulacros y carta Gantt", desc: "Calendario y cumplimiento", Icon: IconCalendar },
 ];
 
 export default function Home() {
   return (
     <div>
       <PageHeader
-        icon="🛡️"
+        icon={IconShield}
         eyebrow={`${documentoInfo.codigo} · v${documentoInfo.versionActual}`}
         title={`PISE — ${establecimiento.nombre}`}
         description="Plan Integral de Seguridad Educativa. Esta aplicación es la versión 1 de diseño: el contenido corresponde al documento vigente del colegio y se irá completando hasta alinearlo al 100% con el manual Mineduc / SENAPRED 2025."
@@ -48,31 +60,15 @@ export default function Home() {
       </div>
 
       <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Card>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-lime-500/10 text-sm text-lime-700 dark:text-lime-400">🎓</span>
-          <p className="mt-2 text-xs text-muted">Estudiantes</p>
-          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalEstudiantes.toLocaleString("es-CL")}</p>
-        </Card>
-        <Card>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-skyblue-500/10 text-sm text-skyblue-700 dark:text-skyblue-400">🧑‍🏫</span>
-          <p className="mt-2 text-xs text-muted">Funcionarios</p>
-          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalFuncionarios}</p>
-        </Card>
-        <Card>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-lime-500/10 text-sm text-lime-700 dark:text-lime-400">🏫</span>
-          <p className="mt-2 text-xs text-muted">Personas totales</p>
-          <p className="mt-0.5 text-2xl font-bold">{establecimiento.totalPersonas.toLocaleString("es-CL")}</p>
-        </Card>
-        <Card>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-skyblue-500/10 text-sm text-skyblue-700 dark:text-skyblue-400">🚨</span>
-          <p className="mt-2 text-xs text-muted">Protocolos activos</p>
-          <p className="mt-0.5 text-2xl font-bold">{protocolos.length}</p>
-        </Card>
+        <StatCard icon={IconGraduationCap} label="Estudiantes" value={establecimiento.totalEstudiantes.toLocaleString("es-CL")} />
+        <StatCard icon={IconBriefcase} label="Funcionarios" value={establecimiento.totalFuncionarios} />
+        <StatCard icon={IconBuilding} label="Personas totales" value={establecimiento.totalPersonas.toLocaleString("es-CL")} />
+        <StatCard icon={IconSiren} label="Protocolos activos" value={protocolos.length} />
       </div>
 
       <div className="mb-8 grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Establecimiento</h2>
+          <h2 className="mb-4 section-title">Establecimiento</h2>
           <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
             <div>
               <dt className="text-muted">Dirección</dt>
@@ -102,7 +98,7 @@ export default function Home() {
         </Card>
 
         <Card>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Contactos clave</h2>
+          <h2 className="mb-4 section-title">Contactos clave</h2>
           <ul className="space-y-3 text-sm">
             {contactosDestacados.map((c) => (
               <li key={c.institucion} className="flex items-start justify-between gap-3">
@@ -118,7 +114,7 @@ export default function Home() {
       </div>
 
       <div className="mb-8">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Estado de actualización normativa</h2>
+        <h2 className="mb-4 section-title">Estado de actualización normativa</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <Card className="flex items-center justify-between">
             <div>
@@ -151,13 +147,13 @@ export default function Home() {
       </div>
 
       <div>
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">Secciones del PISE</h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-4 section-title">Secciones del PISE</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {secciones.map((s) => (
             <Link key={s.href} href={s.href}>
               <Card interactive className="flex h-full items-start gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500/15 to-skyblue-500/15 text-lg">
-                  {s.icon}
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-lime-500/15 to-skyblue-500/15">
+                  <s.Icon className="h-[18px] w-[18px] text-lime-700 dark:text-lime-400" strokeWidth={1.75} />
                 </span>
                 <div>
                   <p className="font-semibold">{s.label}</p>

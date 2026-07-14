@@ -1,11 +1,12 @@
 import { Card, PageHeader } from "@/components/Card";
+import { IconUsers } from "@/components/icons";
 import { comiteSeguridad, brigadaPrimerosAuxilios, establecimiento } from "@/data/pise";
 
 export default function ComitePage() {
   return (
     <div>
       <PageHeader
-        icon="👥"
+        icon={IconUsers}
         eyebrow="Gobernanza"
         title="Comité de Seguridad Escolar"
         description="Estructura responsable de la toma de decisiones y operaciones antes, durante y después de una emergencia."
@@ -19,7 +20,7 @@ export default function ComitePage() {
         </p>
       </Card>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {comiteSeguridad.map((m) => (
           <Card key={m.cargo}>
             <p className="text-xs font-semibold uppercase tracking-wide text-skyblue-600 dark:text-skyblue-400">
@@ -40,7 +41,7 @@ export default function ComitePage() {
       </div>
 
       <div className="mt-8">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="mb-4 section-title">
           Brigada de primeros auxilios
         </h2>
         <Card>

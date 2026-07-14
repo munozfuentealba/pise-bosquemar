@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card, PageHeader } from "@/components/Card";
 import StatusBadge from "@/components/StatusBadge";
+import { IconSiren } from "@/components/icons";
 import { protocolos } from "@/data/pise";
 
 export function generateStaticParams() {
@@ -23,7 +24,7 @@ export default async function ProtocoloDetailPage({
         ← Todos los protocolos
       </Link>
 
-      <PageHeader icon="🚨" eyebrow={protocolo.categoria} title={protocolo.titulo} />
+      <PageHeader icon={IconSiren} eyebrow={protocolo.categoria} title={protocolo.titulo} />
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <StatusBadge estado={protocolo.estado} />

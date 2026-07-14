@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card, PageHeader } from "@/components/Card";
 import StatusBadge from "@/components/StatusBadge";
+import { IconSiren } from "@/components/icons";
 import { protocolos, type Protocolo } from "@/data/pise";
 
 const CATEGORIAS = Array.from(new Set(protocolos.map((p) => p.categoria)));
@@ -13,7 +14,7 @@ export default function ProtocolosPage() {
   return (
     <div>
       <PageHeader
-        icon="🚨"
+        icon={IconSiren}
         eyebrow="Metodología ACCEDER"
         title="Protocolos de emergencia"
         description="Procedimientos de alerta, alarma, intervención y recomendaciones para cada tipo de evento."
@@ -21,8 +22,8 @@ export default function ProtocolosPage() {
 
       {CATEGORIAS.map((cat) => (
         <section key={cat} className="mb-10">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">{cat}</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <h2 className="mb-4 section-title">{cat}</h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {groupBy(protocolos, cat).map((p) => (
               <Link key={p.slug} href={`/protocolos/${p.slug}`}>
                 <Card interactive className="h-full">

@@ -4,16 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import {
+  IconCalendar,
+  IconCross,
+  IconHome,
+  IconPhone,
+  IconSearch,
+  IconSiren,
+  IconUsers,
+  IconWrench,
+} from "./icons";
 
 const NAV = [
-  { href: "/", label: "Inicio", icon: "🏠" },
-  { href: "/comite", label: "Comité de Seguridad", icon: "👥" },
-  { href: "/diagnostico", label: "Diagnóstico AIDEP", icon: "🔎" },
-  { href: "/protocolos", label: "Protocolos de emergencia", icon: "🚨" },
-  { href: "/directorio", label: "Directorio de emergencia", icon: "📞" },
-  { href: "/primeros-auxilios", label: "Primeros auxilios", icon: "🩹" },
-  { href: "/simulacros", label: "Simulacros y carta Gantt", icon: "📅" },
-  { href: "/actualizacion", label: "Plan de actualización 2025", icon: "🛠️" },
+  { href: "/", label: "Inicio", Icon: IconHome },
+  { href: "/comite", label: "Comité de Seguridad", Icon: IconUsers },
+  { href: "/diagnostico", label: "Diagnóstico AIDEP", Icon: IconSearch },
+  { href: "/protocolos", label: "Protocolos de emergencia", Icon: IconSiren },
+  { href: "/directorio", label: "Directorio de emergencia", Icon: IconPhone },
+  { href: "/primeros-auxilios", label: "Primeros auxilios", Icon: IconCross },
+  { href: "/simulacros", label: "Simulacros y carta Gantt", Icon: IconCalendar },
+  { href: "/actualizacion", label: "Plan de actualización 2025", Icon: IconWrench },
 ] as const;
 
 export default function Sidebar() {
@@ -24,14 +34,12 @@ export default function Sidebar() {
     <>
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-charcoal-900 px-4 py-3 text-white lg:hidden">
         <span className="flex items-center gap-2">
-          <span className="rounded-md bg-white px-2 py-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-bosquemar.png" alt="Colegio Bosquemar" className="h-6 w-auto" />
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-icon.png" alt="Colegio Bosquemar" className="h-8 w-auto" />
           <span className="text-sm font-semibold">PISE</span>
         </span>
         <div className="flex items-center gap-2">
-          <ThemeToggle className="px-2 py-1.5" />
+          <ThemeToggle className="!h-8 !w-8 border-white/20 bg-white/5 text-white hover:bg-white/10" />
           <button
             onClick={() => setOpen((v) => !v)}
             className="rounded-md border border-white/20 px-3 py-1.5 text-sm"
@@ -59,22 +67,20 @@ export default function Sidebar() {
         />
 
         <div className="relative flex flex-col gap-3 border-b border-white/10 px-5 py-6">
-          <div className="flex items-center justify-between gap-2">
-            <div className="w-fit rounded-lg bg-white px-3 py-2.5 shadow-lg shadow-black/20">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-bosquemar.png" alt="Colegio Bosquemar" className="h-9 w-auto" />
-            </div>
-            <ThemeToggle className="hidden !p-2 lg:flex" />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-icon.png" alt="Colegio Bosquemar" className="h-11 w-auto" />
           <div>
-            <p className="text-sm font-semibold text-white">PISE — Plan Integral de Seguridad Educativa</p>
-            <p className="text-xs text-white/50">Corporación Educacional Futuro</p>
+            <p className="font-display text-base font-semibold text-white">PISE</p>
+            <p className="text-xs leading-snug text-white/50">
+              Plan Integral de Seguridad Educativa · Corporación Educacional Futuro
+            </p>
           </div>
         </div>
 
         <nav className="relative flex flex-col gap-1 px-3 py-4">
           {NAV.map((item) => {
             const active = pathname === item.href;
+            const Icon = item.Icon;
             return (
               <Link
                 key={item.href}
@@ -93,11 +99,11 @@ export default function Sidebar() {
                   }`}
                 />
                 <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-sm transition-transform duration-200 group-hover:scale-110 ${
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-transform duration-200 group-hover:scale-110 ${
                     active ? "bg-charcoal-900/10" : "bg-white/10"
                   }`}
                 >
-                  {item.icon}
+                  <Icon className="h-4 w-4" strokeWidth={1.75} />
                 </span>
                 {item.label}
               </Link>

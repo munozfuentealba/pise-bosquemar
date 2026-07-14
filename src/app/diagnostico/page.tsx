@@ -1,4 +1,5 @@
 import { Card, PageHeader } from "@/components/Card";
+import { IconSearch } from "@/components/icons";
 import { analisisHistorico, investigacionTerreno, planDeBrechas, infraestructura } from "@/data/pise";
 
 function Cumplimiento({ value }: { value: number }) {
@@ -19,14 +20,14 @@ export default function DiagnosticoPage() {
   return (
     <div>
       <PageHeader
-        icon="🔎"
+        icon={IconSearch}
         eyebrow="Metodología AIDEP"
         title="Diagnóstico de riesgos y recursos"
         description="Análisis histórico, investigación en terreno, priorización de riesgos y plan de brechas del colegio."
       />
 
       <section className="mb-10">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="mb-4 section-title">
           A · Análisis histórico — ¿qué nos ha pasado?
         </h2>
         <div className="overflow-x-auto rounded-xl border border-border">
@@ -54,14 +55,14 @@ export default function DiagnosticoPage() {
       </section>
 
       <section className="mb-10">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="mb-4 section-title">
           I · Investigación en terreno — ¿dónde y cómo podría volver a pasar?
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {investigacionTerreno.map((r, i) => (
             <Card key={i}>
               <p className="font-semibold">{r.condicion}</p>
-              <p className="mt-1 text-sm text-muted">📍 {r.ubicacion}</p>
+              <p className="mt-1 text-sm text-muted">{r.ubicacion}</p>
               <p className="mt-2 text-sm">{r.impacto}</p>
               <p className="mt-2 text-xs text-muted">Encargado: {r.encargado}</p>
             </Card>
@@ -70,7 +71,7 @@ export default function DiagnosticoPage() {
       </section>
 
       <section className="mb-10">
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="mb-4 section-title">
           Plan de brechas 2026
         </h2>
         <div className="overflow-x-auto rounded-xl border border-border">
@@ -100,10 +101,10 @@ export default function DiagnosticoPage() {
       </section>
 
       <section>
-        <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
+        <h2 className="mb-4 section-title">
           Inventario de infraestructura
         </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {infraestructura.map((it, i) => (
             <Card key={i} className={it.alerta ? "border-red-400/40" : ""}>
               <div className="flex items-start justify-between gap-3">
