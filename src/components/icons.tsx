@@ -209,6 +209,15 @@ export function IconInstagram(props: IconProps) {
   );
 }
 
+export function IconBook(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 5.2c2.4-1 5-1.2 8 0v14c-3-1.2-5.6-1-8 0V5.2Z" />
+      <path d="M20 5.2c-2.4-1-5-1.2-8 0v14c3-1.2 5.6-1 8 0V5.2Z" />
+    </svg>
+  );
+}
+
 export const NAV_ICONS = {
   home: IconHome,
   comite: IconUsers,

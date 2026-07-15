@@ -6,6 +6,7 @@ import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 import { BASE_PATH } from "@/lib/basePath";
 import {
+  IconBook,
   IconCalendar,
   IconCross,
   IconHome,
@@ -24,6 +25,7 @@ const NAV = [
   { href: "/directorio", label: "Directorio de emergencia", Icon: IconPhone },
   { href: "/primeros-auxilios", label: "Primeros auxilios", Icon: IconCross },
   { href: "/simulacros", label: "Simulacros y carta Gantt", Icon: IconCalendar },
+  { href: "/documento", label: "Documento PISE completo", Icon: IconBook },
   { href: "/actualizacion", label: "Plan de actualización 2025", Icon: IconWrench },
 ] as const;
 
