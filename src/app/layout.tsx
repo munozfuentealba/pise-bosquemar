@@ -6,6 +6,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import FloatingContact from "@/components/FloatingContact";
 import ChatWidget from "@/components/ChatWidget";
 import RightRail from "@/components/RightRail";
+import IntroSplash from "@/components/IntroSplash";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -54,6 +55,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full">
+        <IntroSplash />
         <div className="flex min-h-screen flex-col lg:flex-row">
           <Sidebar />
 
