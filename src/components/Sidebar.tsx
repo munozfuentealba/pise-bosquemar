@@ -35,8 +35,14 @@ export default function Sidebar() {
     <>
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-charcoal-900 px-4 py-3 text-white lg:hidden">
         <span className="flex items-center gap-2">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${BASE_PATH}/logo-icon.png`} alt="Colegio Bosquemar" className="h-8 w-auto" />
+          <span className="flex items-center rounded-md bg-white px-2 py-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${BASE_PATH}/logo-bosquemar.png`}
+              alt="Colegio Bosquemar — Puerto Montt"
+              className="h-5 w-auto"
+            />
+          </span>
           <span className="text-sm font-semibold">PISE</span>
         </span>
         <div className="flex items-center gap-2">
@@ -67,9 +73,15 @@ export default function Sidebar() {
           style={{ animationDelay: "-6s" }}
         />
 
-        <div className="relative flex flex-col gap-3 border-b border-white/10 px-5 py-6">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${BASE_PATH}/logo-icon.png`} alt="Colegio Bosquemar" className="h-11 w-auto" />
+        <div className="relative flex flex-col gap-3.5 border-b border-white/10 px-5 py-6">
+          <div className="w-fit rounded-xl bg-white px-4 py-3 shadow-lg shadow-black/25">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${BASE_PATH}/logo-bosquemar.png`}
+              alt="Colegio Bosquemar — Puerto Montt"
+              className="h-14 w-auto"
+            />
+          </div>
           <div>
             <p className="font-display text-base font-semibold text-white">PISE</p>
             <p className="text-xs leading-snug text-white/50">
