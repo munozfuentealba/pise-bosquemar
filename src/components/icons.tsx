@@ -218,6 +218,16 @@ export function IconBook(props: IconProps) {
   );
 }
 
+export function IconScale(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3v18M8 21h8" />
+      <path d="M5 7h6M13 7h6" />
+      <path d="M5 7 2.5 12.5a2.5 2.5 0 0 0 5 0L5 7ZM19 7l-2.5 5.5a2.5 2.5 0 0 0 5 0L19 7Z" />
+    </svg>
+  );
+}
+
 export const NAV_ICONS = {
   home: IconHome,
   comite: IconUsers,

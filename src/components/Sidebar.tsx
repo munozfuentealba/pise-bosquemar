@@ -11,6 +11,7 @@ import {
   IconCross,
   IconHome,
   IconPhone,
+  IconScale,
   IconSearch,
   IconSiren,
   IconUsers,
@@ -26,6 +27,7 @@ const NAV = [
   { href: "/primeros-auxilios", label: "Primeros auxilios", Icon: IconCross },
   { href: "/simulacros", label: "Simulacros y carta Gantt", Icon: IconCalendar },
   { href: "/documento", label: "Documento PISE completo", Icon: IconBook },
+  { href: "/comparativa", label: "Comparativa Bosquemar / Pto. Montt", Icon: IconScale },
   { href: "/actualizacion", label: "Plan de actualización 2025", Icon: IconWrench },
 ] as const;
 
